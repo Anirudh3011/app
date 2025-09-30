@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Bank Balance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            padding: 0;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        .status-bar {
+            height: 44px;
+            background: transparent;
+        }
+        
+        .container {
+            height: calc(100vh - 44px);
+            overflow-y: auto;
+            padding: 0 16px 80px 16px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-top: 10px;
+        }
+        
+        .back-btn {
+            font-size: 24px;
+            margin-right: 16px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 500;
+        }
+        
+        .balance-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .balance-amount {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .bank-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .bank-info {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+        
+        .bank-name {
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        
+        .account-type {
+            opacity: 0.9;
+        }
+        
+        .bank-logo {
+            width: 52px;
+            height: 32px;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        .see-all {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .transaction-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 20px;
+        }
+        
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+        }
+        
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+        
+        .avatar-cyan {
+            background: #00d4ff;
+            color: white;
+        }
+        
+        .avatar-yellow {
+            background: #ffd700;
+            color: #333;
+        }
+        
+        .avatar-white {
+            background: #e8e8e8;
+            color: #666;
+        }
+        
+        .transaction-details {
+            flex: 1;
+        }
+        
+        .transaction-name {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+        
+        .transaction-date {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        .transaction-amount {
+            font-size: 16px;
+            font-weight: 500;
+            margin-left: auto;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0a0a0a;
+            padding: 16px;
+            padding-bottom: calc(16px + env(safe-area-inset-bottom));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer-logo {
+            height: 24px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar"></div>
+    <div class="container">
+        <div class="header">
+            <div class="back-btn">←</div>
+            <div class="title">Bank balance</div>
+        </div>
+        
+        <div class="balance-card">
+            <div class="balance-amount">₹1,87,792.70</div>
+            <div class="bank-details">
+                <div class="bank-info">
+                    <div class="bank-name">ICICI Bank ••••3316</div>
+                    <div class="account-type">Savings account</div>
+                </div>
+                <div class="bank-logo">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSogMABBAAEaQQAQBAf//Z+CBBEQEAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/wAARAQABgAQQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2gAMAwEAAhEDEQA/APf6AKACgAoAKACgAoAKACgD/9k=" alt="ICICI Bank Logo">
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-header">
+            <div class="section-title">Transaction history</div>
+            <div class="see-all">See all ›</div>
+        </div>
+        
+        <div class="transaction-list">
+            <div class="transaction-item">
+                <div class="avatar avatar-cyan">M</div>
+                <div class="transaction-details">
+                    <div class="transaction-name">Mr DILIP KUMAR BHAGVAN DAS KEWAT</div>
+                    <div class="transaction-date">26 August</div>
+                </div>
+                <div class="transaction-amount">₹129</div>
+            </div>
+            
+            <div class="transaction-item">
+                <div class="avatar avatar-yellow">S</div>
+                <div class="transaction-details">
+                    <div class="transaction-name">SANABIL RAZA</div>
+                    <div class="transaction-date">24 August</div>
+                </div>
+                <div class="transaction-amount">₹347</div>
+            </div>
+            
+            <div class="transaction-item">
+                <div class="avatar avatar-white">a</div>
+                <div class="transaction-details">
+                    <div class="transaction-name">ajaykumar Langote</div>
+                    <div class="transaction-date">24 August</div>
+                </div>
+                <div class="transaction-amount">₹233</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span style="opacity: 0.8; font-size: 14px;">ICICI Bank | UPI</span>
+    </div>
+</body>
+</html>
